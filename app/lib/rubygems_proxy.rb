@@ -48,7 +48,7 @@ class RubygemsProxy
   end
 
   def gem_list
-    Dir[File.dirname(__FILE__) + "/public/gems/**/*.gem"]
+    Dir["#{root_dir}/public/gems/**/*.gem"]
   end
 
   def grouped_gems
@@ -66,15 +66,15 @@ class RubygemsProxy
 
   def template(name)
     @templates ||= {}
-    @templates[name] ||= File.read(File.dirname(__FILE__) + "/views/#{name}.erb")
+    @templates[name] ||= File.read("#{root_dir}/app/views/#{name}.erb")
   end
 
   def root_dir
-    File.expand_path "..", __FILE__
+    File.expand_path "."
   end
 
   def logger
-    @logger ||= Logger.new("#{root_dir}/tmp/server.log", 10, 1024000)
+    @logger ||= Logger.new(STDOUT)
   end
 
   def cache_dir
@@ -105,26 +105,11 @@ class RubygemsProxy
   end
 
   def cached?
-    case File.basename(filepath)
-    when /^specs\./
-      File.exist?(filepath) && (Time.now - File.mtime(filepath)).to_i < 84600
-    when /\.gz$/
-      false
-    else
-      File.file?(filepath)
-    end
-  end
-
-  def specs?
-    env["PATH_INFO"] =~ /specs\..+\.gz$/
+    File.file?(filepath)
   end
 
   def filepath
-    if specs?
-      File.join(root_dir, env["PATH_INFO"])
-    else
-      File.join(cache_dir, env["PATH_INFO"])
-    end
+    File.join(cache_dir, env["PATH_INFO"])
   end
 
   def url

@@ -4,23 +4,13 @@
 
 Clone this repository.
 
-  $ git clone git://github.com/fnando/rubygems_proxy.git
+  $ git clone git://github.com/andrerocker/rubygems_proxy.git
 
-Set up Apache + Passenger or something similar.
-
-  <VirtualHost *:80>
-    ServerName gems.simplesideias.com.br
-    DocumentRoot /home/fnando/gems.simplesideias.com.br/public
-
-    <Directory /home/fnando/gems.simplesideias.com.br>
-      AllowOverride all
-      Options -MultiViews
-    </Directory>
-  </VirtualHost>
-
-Remember to chmod <tt>public/.htaccess</tt>:
-
-  $ chmod 644 public/.htaccess
+Configure:
+	rake rubygems:proxy:configure
+	
+Start:
+	rake rubygems:proxy:start
 
 Set up your client to use this new Rubygems proxy.
 Add the following line to your Gemfile:

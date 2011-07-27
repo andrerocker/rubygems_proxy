@@ -1,2 +1,3 @@
-source "http://gems.simplesideias.com.br"
-gem "rack", ">= 1.0.0"
+source :rubygems
+gem "rack"
+gem "unicorn"
