@@ -1,10 +1,8 @@
 = Rubygems Proxy
 
-this is a fork of the repository from fnando with some improvements and adaptations to work with the unicorn
+This is a fork of the repository from fnando with some improvements and adaptations to work with unicorn.
 
 == Setting up
-
-Clone this repository.
 
   $ git clone git://github.com/andrerocker/rubygems_proxy.git
   $ rake rubygems:proxy:configure
@@ -22,14 +20,14 @@ And, finally, add this source to your ~/.gemrc.
     - http://localhost:8080/
     gem: --no-rdoc --no-ri
 
-The <tt>specs.4.8.gz</tt> is cached for 24 hours. This file contains all gems/versions
+The <tt>specs.4.8.gz</tt> contains all gems/versions
 and is over 3MB. You can invalidate this cache by running
-<tt>curl -X DELETE http://gems.simplesideias.com.br</tt>.
+<tt>curl -X DELETE http://localhost:8080/</tt>.
 
 = Maintainer
 
-* Nando Vieira - http://nandovieira.com.br
 * Andre Souza - http://andrerocker.in
+* Nando Vieira - http://nandovieira.com.br (Original Version)
 
 == License
 
