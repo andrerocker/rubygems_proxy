@@ -16,14 +16,19 @@ namespace :rubygems do
 
 		desc "restart rubygems_proxy"
 		task "restart" do
-        pid = File.read("app/tmp/pids/unicorn.pid").to_i
-        Process.kill(:USR2, pid)
+      pid = File.read("app/tmp/pids/unicorn.pid").to_i
+      Process.kill(:USR2, pid)
 		end
 		
 		desc "stop rubygems_proxy"
 		task "stop" do
-        pid = File.read("app/tmp/pids/unicorn.pid").to_i
-        Process.kill(:TERM, pid)
+      pid = File.read("app/tmp/pids/unicorn.pid").to_i
+      Process.kill(:TERM, pid)
 		end
+
+		desc "remove all cached files"
+		task "clean" do
+      # peding
+		end		
 	end
 end
