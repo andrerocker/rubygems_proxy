@@ -1,27 +1,25 @@
 = Rubygems Proxy
 
+this is a fork of the repository from fnando with some improvements and adaptations to work with the unicorn
+
 == Setting up
 
 Clone this repository.
 
   $ git clone git://github.com/andrerocker/rubygems_proxy.git
-
-Configure:
-	rake rubygems:proxy:configure
-	
-Start:
-	rake rubygems:proxy:start
+  $ rake rubygems:proxy:configure
+  $ rake rubygems:proxy:start	
 
 Set up your client to use this new Rubygems proxy.
 Add the following line to your Gemfile:
 
-  source "http://gems.simplesideias.com.br"
+  source "http://localhost:8080"
 
 And, finally, add this source to your ~/.gemrc.
 
   ---
     :sources:
-    - http://gems.simplesideias.com.br/
+    - http://localhost:8080/
     gem: --no-rdoc --no-ri
 
 The <tt>specs.4.8.gz</tt> is cached for 24 hours. This file contains all gems/versions
@@ -31,6 +29,7 @@ and is over 3MB. You can invalidate this cache by running
 = Maintainer
 
 * Nando Vieira - http://nandovieira.com.br
+* Andre Souza - http://andrerocker.in
 
 == License
 
