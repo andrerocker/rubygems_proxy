@@ -117,7 +117,8 @@ class RubygemsProxy
   end
 
   def update_specs
-    Dir[File.dirname(__FILE__) + "/*.gz"].each {|file| File.unlink(file)}
-    [200, {"Content-Type" => "text/plain"}, [""]]
+    dir = Dir["#{cache_dir}/*.gz", "#{cache_dir}/gems/**"]    
+    dir.each {|file| File.unlink(file)}
+    [200, {"Content-Type" => "text/plain"}, ["OK\n"]]
   end
 end
